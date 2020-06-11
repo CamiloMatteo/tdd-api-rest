@@ -10,6 +10,21 @@ class ArticlesController < ApplicationController
 		json_response(@article)
 	end
 
+	def create
+		@article = Article.create!(article_params)
+		json_response(@article, :created)
+	end
+
+	def update
+		@article = Article.update(article_params)
+		head :no_content
+	end
+
+	def destroy
+		@article.destroy
+		head :no_content
+	end
+
 	private
 
 	def article_params
